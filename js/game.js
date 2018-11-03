@@ -13,9 +13,13 @@ class Game {
       this.ctx.clearRect(0,0,800,700);
 
       this.plane.move();
-      
       this.drawEverything();
-    },100)
+    }, 80)
+
+    setInterval(() => {
+      this.plane.shot();
+    }, 330);
+    
 // Creates the enemies
     setInterval(() => {
       this.obstacles.push(new Obstacle);
@@ -26,7 +30,10 @@ class Game {
 // Shows the objects
   drawEverything(){
     this.plane.draw();
-    this.obstacles.forEach((obstacle)=>{
+    this.plane.shotsFired.forEach(shot => {
+      shot.draw();
+    });
+    this.obstacles.forEach(obstacle => {
       obstacle.draw();
     });
   }
@@ -38,7 +45,7 @@ onload = function() {
 }
 
 document.onkeydown = function(e) {
-  let commands = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown']
+  let commands = ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "z"]
     if(commands.includes(e.key)){
       e.preventDefault();
     }
