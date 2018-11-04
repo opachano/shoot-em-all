@@ -14,7 +14,7 @@ class Game {
 
       this.plane.move();
       this.drawEverything();
-    }, 80)
+    }, 100)
 
     setInterval(() => {
       this.plane.shot();

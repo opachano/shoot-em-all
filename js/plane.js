@@ -4,8 +4,8 @@ class Plane {
     this.hp = 5;
     this.fire = 1;
     this.shotsFired = [];
-    this.x = 390;
-    this.y = 680;
+    this.x = 380;
+    this.y = 650;
     this.width = 80;
     this.height = 48;
     this.imgsrc = "../images/plane.png";
@@ -22,27 +22,27 @@ class Plane {
   move(){
 
     if(keysBeingPressed.includes("ArrowUp")){
-      if(this.canMove(this.x, this.y-10)){
+      if(this.canMove(this.x, this.y-this.height)){
         this.y -= 10;
       }
       
     }
     if(keysBeingPressed.includes("ArrowDown")){
 
-      if(this.canMove(this.x, this.y+10)){
+      if(this.canMove(this.x, this.y+this.height+10)){
       this.y += 10;
       }
 
     }
 
     if(keysBeingPressed.includes("ArrowLeft")){
-      if(this.canMove(this.x-10, this.y)){
+      if(this.canMove(this.x-this.width, this.y)){
       this.x -= 10; 
       }
     }
 
     if(keysBeingPressed.includes("ArrowRight")){
-      if(this.canMove(this.x+10, this.y)){
+      if(this.canMove(this.x+this.width+10, this.y)){
       this.x += 10; 
       }
     }
