@@ -1,20 +1,29 @@
 let thePlane;
 let theGame;
 let keysBeingPressed = [];
+let bg = new Image();
+bg.src = "../images/background.png"
 // The game
 class Game {
   constructor(plane) {
-    this.ctx = document.getElementById("game-screen").getContext("2d")
+    this.ctx = document.getElementById("game-screen").getContext("2d");
     this.plane = plane;
     this.obstacles = [];
     this.plane.draw();
+    this.background = new Background();
+  
 // Gets the game running    
-    setInterval(() => {
-      this.ctx.clearRect(0,0,800,700);
+  // setInterval(() => {
+  //   this.ctx.clearRect(0,0,800,700);
+  //   this.background.render()
+  // },30);
 
+  setInterval(() => {
+      this.ctx.clearRect(0,0,800,700);
+      this.background.render();
       this.plane.move();
       this.drawEverything();
-    }, 100)
+    }, 100);
 
     setInterval(() => {
       this.plane.shot();
@@ -23,7 +32,7 @@ class Game {
 // Creates the enemies
     setInterval(() => {
       this.obstacles.push(new Obstacle);
-    }, 5000)
+    }, 5000);
 
   }
   

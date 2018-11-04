@@ -9,6 +9,7 @@ class Shot {
   }
 //Draws the shots
   draw(){ 
+    this.ctx.fillStyle = "rgb(214, 85, 10)";
     this.ctx.fillRect(this.x, this.y, this.width, this.height);
   }
 
