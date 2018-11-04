@@ -6,18 +6,18 @@ class Plane {
     this.shotsFired = [];
     this.x = 390;
     this.y = 680;
-   
+    this.width = 80;
+    this.height = 48;
+    this.imgsrc = "../images/plane.png";
   }
 // Draws the plane
   draw() {
-    this.ctx.beginPath();
-    this.ctx.moveTo(this.x, this.y);
-    this.ctx.lineTo(this.x+20, this.y);
-    this.ctx.lineTo(this.x+20, this.y+20);
-    this.ctx.lineTo(this.x, this.y+20);
-    this.ctx.fill();
+    let planeImg = new Image();
+      planeImg.src = this.imgsrc;
+      planeImg.onload = () => {
+      this.ctx.drawImage(planeImg, this.x, this.y, this.width, this.height);
+    }
   }
-
 //Moves the plane
   move(){
 
@@ -58,8 +58,7 @@ class Plane {
 //Controls the amount of shots displayed
   shot() {
     if(keysBeingPressed.includes("z")){
-      this.shotsFired.push(new Shot(this.x+10, this.y));
+    this.shotsFired.push(new Shot(this.x+40, this.y));
     }
   }
-
 }
