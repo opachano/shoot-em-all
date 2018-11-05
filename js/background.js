@@ -9,9 +9,9 @@ class Background {
   render(){
     let bgImage = new Image();
     bgImage.onload = () => {
-    this.ctx.drawImage(bgImage, 0, this.y+=10, 900, 1600);
+    this.ctx.drawImage(bgImage, 0, this.y+=2, 900, 1600);
     if(this.y >= 0){
-        this.y = -799;
+        this.y = -578;
     }}
     bgImage.src = this.src;
   }

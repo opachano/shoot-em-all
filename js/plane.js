@@ -22,37 +22,36 @@ class Plane {
   move(){
 
     if(keysBeingPressed.includes("ArrowUp")){
-      if(this.canMove(this.x, this.y-this.height)){
-        this.y -= 10;
+      if(this.canMove(this.x, this.y-10)){
+        this.y -= 0.75;
       }
       
     }
     if(keysBeingPressed.includes("ArrowDown")){
 
       if(this.canMove(this.x, this.y+this.height+10)){
-      this.y += 10;
+      this.y += 0.75;
       }
 
     }
 
     if(keysBeingPressed.includes("ArrowLeft")){
-      if(this.canMove(this.x-this.width, this.y)){
-      this.x -= 10; 
+      if(this.canMove(this.x-10, this.y)){
+      this.x -= 0.75; 
       }
     }
 
     if(keysBeingPressed.includes("ArrowRight")){
       if(this.canMove(this.x+this.width+10, this.y)){
-      this.x += 10; 
+      this.x += 0.75; 
       }
     }
   }
 //Checks for collision
   canMove(futureX, futureY){
-    let result = true;
     if(futureX < 0 || futureX > 800 || futureY < 0 || futureY > 700 ){
-      result = false;
-    } return result
+      return false;
+    } return true
   }
 
 //Controls the amount of shots displayed
@@ -68,16 +67,13 @@ class Plane {
 
   checkIfCollide(obstacle) {
     if(collisionCd){
-      if(this.x+2 < obstacle.x && this.x+this.width < obstacle.x+obstacle.width-20 && this.y <= obstacle.y+this.height && !(this.y+this.height < obstacle.y)){
-        this.hp-=1;
-        console.log(this.hp)
-        collisionCd = false;
-        setTimeout(() => {collisionCd = true}, 1000);
-        if(this.hp === 0) {
-          return false
-        } 
-        return true
-      }
+    if (this.y > obstacle.y+obstacle.height || this.y+this.height < obstacle.y || this.x > obstacle.x+obstacle.width || this.x+this.width < obstacle.x) {
+      return; 
     }
+    this.hp-=1;
+    collisionCd = false;
+    console.log(this.hp)
+    setTimeout(() => {collisionCd = true}, 1000);
+  }
   }
 }

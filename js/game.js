@@ -19,7 +19,7 @@ class Game {
     setInterval(() => {
 
       this.ctx.clearRect(0,0,800,700);
-      // this.background.render();
+      this.background.render();
       this.plane.shotsFired.forEach((shot,shotIndex) => {
         if(shot.y <= 0) {
           this.plane.shotsFired.splice(shotIndex, 1);
@@ -33,7 +33,7 @@ class Game {
       this.plane.move();
       this.plane.shot();
       this.drawEverything();
-    }, 50);
+    }, 5);
 
     setInterval(() => {
       this.obstacles.forEach((obstacle) => {
@@ -50,12 +50,12 @@ class Game {
           }
         })
       })
-    }, 50);
+    }, 15);
 
 // Creates the enemies
     setInterval(() => {
       this.obstacles.push(new Obstacle);
-    }, 2000);
+    }, 3000);
 
   }
   

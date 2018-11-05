@@ -3,7 +3,7 @@ class Obstacle {
     this.ctx = document.getElementById("game-screen").getContext("2d");
     this.hp = 4;
     this.x = Math.floor(Math.random() * (700 - 100) + 100);
-    this.y = 20;
+    this.y = -10;
     this.width =  60;
     this.height =  34;
     this.imgsrc = "../images/enemyPlane.png"
@@ -21,16 +21,17 @@ class Obstacle {
 
   moveDown(){
     setInterval(()=>{
-      this.y += 5;
-    }, 100);
+      this.y += 0.5;
+    }, 10);
   };
 
   checkIfHit(shot) {
-    if(this.x < shot.x && this.x+this.width > shot.x+shot.width && this.y+this.height >= shot.y-3 && !(this.y < shot.y)){
-      this.hp-=1;
-      if (this.hp === 0) {
-        return false
-      } return true
+    if(this.y > shot.y+shot.height || this.y+this.height < shot.y || this.x > shot.x+shot.width || this.x+this.width < shot.x){
+     return
     }
+    this.hp-=1;
+    if (this.hp === 0) {
+      return false
+    } return true
   }
 }

@@ -5,17 +5,21 @@ class Shot {
     this.y = y;
     this.width = 3;
     this.height = 10;
+    this.imgsrc = "/images/shots.png"
     this.moveUp();
   }
 //Draws the shots
   draw(){ 
-    this.ctx.fillStyle = "rgb(214, 85, 10)";
-    this.ctx.fillRect(this.x, this.y, this.width, this.height);
+    let shotImg = new Image();
+    shotImg.onload = () => {
+      this.ctx.drawImage(shotImg, this.x, this.y, this.width, this.height);
+    };
+    shotImg.src = this.imgsrc;
   }
 
   moveUp() {
     setInterval(()=>{
-      this.y -= 20;
-    }, 100)
+      this.y -= 1.5;
+    }, 5)
   }
 }
