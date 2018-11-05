@@ -3,6 +3,8 @@ let theGame;
 let keysBeingPressed = [];
 let bg = new Image();
 bg.src = "../images/background.png"
+let cd = true;
+let collisionCd = true;
 // The game
 class Game {
   constructor(plane) {
@@ -13,26 +15,47 @@ class Game {
     this.background = new Background();
   
 // Gets the game running    
-  // setInterval(() => {
-  //   this.ctx.clearRect(0,0,800,700);
-  //   this.background.render()
-  // },30);
-
-  setInterval(() => {
-      this.ctx.clearRect(0,0,800,700);
-      this.background.render();
-      this.plane.move();
-      this.drawEverything();
-    }, 100);
 
     setInterval(() => {
+
+      this.ctx.clearRect(0,0,800,700);
+      // this.background.render();
+      this.plane.shotsFired.forEach((shot,shotIndex) => {
+        if(shot.y <= 0) {
+          this.plane.shotsFired.splice(shotIndex, 1);
+        }
+      }); 
+      this.obstacles.forEach((obstacle,obstacleIndex) => {
+        if(obstacle.y >= 800) {
+          this.obstacles.splice(obstacleIndex, 1);
+        }
+      }); 
+      this.plane.move();
       this.plane.shot();
-    }, 330);
-    
+      this.drawEverything();
+    }, 50);
+
+    setInterval(() => {
+      this.obstacles.forEach((obstacle) => {
+        this.plane.checkIfCollide(obstacle);
+      });
+      this.plane.shotsFired.forEach((shot,shotIndex) => {
+        this.obstacles.forEach((obstacle, obstacleIndex) => {
+          if(obstacle.checkIfHit(shot) === true) {
+            this.plane.shotsFired.splice(shot[shotIndex], 1);
+          }
+          if(obstacle.checkIfHit(shot) === false) {
+            this.obstacles.splice(obstacleIndex, 1);
+            this.plane.shotsFired.splice(shotIndex, 1);
+          }
+        })
+      })
+    }, 50);
+
 // Creates the enemies
     setInterval(() => {
       this.obstacles.push(new Obstacle);
-    }, 5000);
+    }, 2000);
 
   }
   

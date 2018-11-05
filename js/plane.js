@@ -4,8 +4,8 @@ class Plane {
     this.hp = 5;
     this.fire = 1;
     this.shotsFired = [];
-    this.x = 380;
-    this.y = 650;
+    this.x = 350;
+    this.y = 640;
     this.width = 80;
     this.height = 48;
     this.imgsrc = "../images/plane.png";
@@ -57,8 +57,27 @@ class Plane {
 
 //Controls the amount of shots displayed
   shot() {
-    if(keysBeingPressed.includes("z")){
-    this.shotsFired.push(new Shot(this.x+40, this.y));
+    if(cd) {
+      if(keysBeingPressed.includes("z")){
+        this.shotsFired.push(new Shot(this.x+40, this.y));
+        cd = false;
+        setTimeout(() => {cd = true}, 500);
+      }
+    }
+  }
+
+  checkIfCollide(obstacle) {
+    if(collisionCd){
+      if(this.x+2 < obstacle.x && this.x+this.width < obstacle.x+obstacle.width-20 && this.y <= obstacle.y+this.height && !(this.y+this.height < obstacle.y)){
+        this.hp-=1;
+        console.log(this.hp)
+        collisionCd = false;
+        setTimeout(() => {collisionCd = true}, 1000);
+        if(this.hp === 0) {
+          return false
+        } 
+        return true
+      }
     }
   }
 }
