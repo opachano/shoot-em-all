@@ -6,23 +6,36 @@ class Obstacle {
     this.y = -10;
     this.width =  60;
     this.height =  34;
-    this.imgsrc = "../images/enemyPlane.png"
+    this.alive = 1;
     this.moveDown();
+    this.i = 0;
+    
   }
 //Draw the obstacle
   draw(){ 
-    let enemyImg = new Image();
-    enemyImg.onload = () => {
-      this.ctx.drawImage(enemyImg, this.x, this.y, this.width, this.height);
-    };
-    enemyImg.src = this.imgsrc;
+    let img = new Image();
+
+    if(this.hp > 0) {
+        img.src = "./images/enemyPlane.png";
+    } else {
+      img.src = "./images/enemyExplosion/basicExplosion"+this.i+".png";
+   
+      if(theGame.frames % 20 === 0){
+        this.i++;
+      }
+  
+    }
+
+    this.ctx.drawImage(img,this.x,this.y, this.width,this.height)
   };
 
 
   moveDown(){
     setInterval(()=>{
-      this.y += 0.5;
-    }, 10);
+      if(this.hp > 0) {
+       this.y += 10;
+      }
+      }, 100);
   };
 
   checkIfHit(shot) {
@@ -30,8 +43,9 @@ class Obstacle {
      return
     }
     this.hp-=1;
-    if (this.hp === 0) {
+    if (this.hp <= 0) {
+      theScore++
       return false
-    } return true
+    } else return true
   }
 }
