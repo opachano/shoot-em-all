@@ -44,7 +44,11 @@ class Obstacle {
     }
     this.hp-=1;
     if (this.hp <= 0) {
+      explosion.pause();
+      explosion.currentTime = 0;
+      explosion.play();
       theScore++
+      $("#scoreKeeper").text(`${theScore}`);
       return false
     } else return true
   }

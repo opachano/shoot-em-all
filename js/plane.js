@@ -84,6 +84,9 @@ class Plane {
     if(cd) {
       if(keysBeingPressed.includes("z")){
         this.shotsFired.push(new Shot(this.x+47, this.y));
+        laser.pause();
+        laser.currentTime = 0;
+        laser.play();
         cd = false;
         setTimeout(() => {cd = true}, 500);
       }

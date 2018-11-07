@@ -6,15 +6,18 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="./css/style.css">
   <title>Document</title>
-</head>
-<body>
-  <canvas id="game-background" width="800px" height="700px"></canvas>
-  <canvas id="game-screen" width="800px" height="700px"></canvas>
   <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
-  <script type="text/javascript" src="ion.sound.min.js"></script>
+</head>
+<audio src="./sounds/Laser.mp3" id="laser"></audio>
+<audio src="./sounds/Bomb.mp3" id="explosion"></audio>
+<audio src="./sounds/Tokyo.mp3" id="tokyo" loop></audio>
+<body>
+  <div>Score: <span id="scoreKeeper">0</span></div>
+  <canvas id="game-background" width="800px" height="700px"></canvas>
+  <canvas id="game-screen" width="800px" height="700px"></canvas>
   <script type="text/javascript" src="js/shot.js"></script>
   <script type="text/javascript" src="js/obstacle.js"></script>
   <script type="text/javascript" src="js/plane.js"></script>

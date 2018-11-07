@@ -5,6 +5,9 @@ let cd = true;
 let collisionCd = true;
 let defeat = false;
 let theScore = 0;
+let laser = document.getElementById("laser");
+let explosion = document.getElementById("explosion");
+let tokyo = document.getElementById("tokyo");
 
 // The game
 class Game {
@@ -77,6 +80,9 @@ class Game {
 window.onload = function() {
   thePlane = new Plane();
   theGame = new Game(thePlane);
+  tokyo.currentTime = 0;
+  tokyo.play();
+
 }
 
   document.onkeydown = function(e) {
@@ -98,22 +104,3 @@ window.onload = function() {
     }
   }
 }
-
-// init bunch of sounds
-ion.sound({
-  sounds: [
-      {name: "beer_can_opening"},
-      {name: "bell_ring"},
-      {name: "branch_break"},
-      {name: "button_click"}
-  ],
-
-  // main config
-  path: "static/sounds/",
-  preload: true,
-  multiplay: true,
-  volume: 0.9
-});
-
-// play sound
-ion.sound.play("beer_can_opening");
