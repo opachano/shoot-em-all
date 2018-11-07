@@ -84,6 +84,7 @@ window.onload = function() {
     $("#firstImage").toggle();
     $("#secondImage").toggle();
     $("#startGame").toggle();
+    $("#game-instructions").toggle();
     $("#game-instructions").text(`Thank you for volunteering great pilot, it's time to 
     fight the bad guys ahead! Move around with the arrow keys and shoot at
     your enemies using "Z". Let me know when you are ready.`)
