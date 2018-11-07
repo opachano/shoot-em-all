@@ -35,7 +35,7 @@ class Plane {
       img.src = "./images/playerPlane/plane4.png"
       }
 
-    if (this.hp === 0) {  
+    if (this.hp <= 0) {  
      img.src = "./images/explosion/explosions"+this.i+".png";
         if(theGame.frames % 20 === 0){
           if(this.i < 14){this.i++};
@@ -99,8 +99,16 @@ class Plane {
         return; 
       }
       this.hp -= 1;
+      if(this.hp > 0) {
       collisionCd = false;
+      damage.pause();
+      damage.currentTime = 0;
+      damage.play();
+      }
       if(this.hp === 0) {
+        death.pause();
+        death.currentTime = 0;
+        death.play();
         defeat = true;
       }
       setTimeout(() => {collisionCd = true}, 1000);

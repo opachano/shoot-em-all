@@ -8,6 +8,8 @@ let theScore = 0;
 let laser = document.getElementById("laser");
 let explosion = document.getElementById("explosion");
 let tokyo = document.getElementById("tokyo");
+let damage = document.getElementById("damage");
+let death = document.getElementById("death");
 
 // The game
 class Game {
@@ -28,7 +30,6 @@ class Game {
 
   // Gets the game running    
     physicsEngine(){
-
     this.ctx.clearRect(0,0,800,700);
       this.background.render();
       this.plane.shotsFired.forEach((shot,shotIndex) => {
@@ -78,22 +79,33 @@ class Game {
 }
 // Game initialization
 window.onload = function() {
-  thePlane = new Plane();
-  theGame = new Game(thePlane);
-  tokyo.currentTime = 0;
-  tokyo.play();
+  $("#startGame").on("click", () => {
+    tokyo.play();
+    $("#firstImage").toggle();
+    $("#secondImage").toggle();
+    $("#startGame").toggle();
+    $("#game-instructions").text(`Thank you for volunteering great pilot, it's time to 
+    fight the bad guys ahead! Move around with the arrow keys and shoot at
+    your enemies using "Z". Let me know when you are ready.`)
+    $("#ready").toggle();
+  })
 
-}
+  $("#ready").on("click", () => {
+    $("#game-menu").toggle();
+    thePlane = new Plane();
+    theGame = new Game(thePlane);
+  })
+  }
 
-  document.onkeydown = function(e) {
-    if(!defeat) {
-      let commands = ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "z"]
-        if(commands.includes(e.key)){
-          e.preventDefault();
-        }
-        if(!keysBeingPressed.includes(e.key)){
-          keysBeingPressed.push(e.key);
-        }
+document.onkeydown = function(e) {
+  if(!defeat) {
+    let commands = ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "z"]
+      if(commands.includes(e.key)){
+        e.preventDefault();
+      }
+      if(!keysBeingPressed.includes(e.key)){
+        keysBeingPressed.push(e.key);
+      }
   
 
   document.onkeyup = function(e){

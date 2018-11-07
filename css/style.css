@@ -16,3 +16,44 @@ canvas {
   position: absolute;
   z-index: -1;
 }
+
+#game-menu {
+  background-image: url("../images/menuBackground.png");
+  background-size: contain;
+  position: absolute;
+  display: inline;
+  z-index: 10;
+  height: 700px;
+  width: 800px;
+  border: 10px #212236 solid;
+  border-radius: 5px;
+}
+
+#firstImage{
+  height: 400px;
+  width: 330px;
+  margin-top: 15%;
+}
+
+#ready {
+  display: none;
+}
+
+#secondImage {
+  display: none;
+  height: 400px;
+  width: 330px;
+  margin-top: 15%;
+}
+
+button {
+  text-align: center;
+  padding: 0;
+  height: 10%;
+  width: 22%;
+  color: white;
+  border-radius: 6px;
+  text-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+  background: rgb(223, 117, 20);
+  font-size: 30px;
+}

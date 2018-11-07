@@ -13,9 +13,18 @@
 </head>
 <audio src="./sounds/Laser.mp3" id="laser"></audio>
 <audio src="./sounds/Bomb.mp3" id="explosion"></audio>
+<audio src="./sounds/playerDamage.mp3" id="damage"></audio>
+<audio src="./sounds/playerDeath.mp3" id="death"></audio>
 <audio src="./sounds/Tokyo.mp3" id="tokyo" loop></audio>
 <body>
   <div>Score: <span id="scoreKeeper">0</span></div>
+  <div id="game-menu">
+    <img src="./images/firstImage.png" alt="" id="firstImage">
+    <img src="./images/secondImage.png" alt="" id="secondImage">
+    <p id="game-instructions"></p>
+    <button id="startGame">START GAME</button>
+    <button id="ready">READY</button>
+  </div>
   <canvas id="game-background" width="800px" height="700px"></canvas>
   <canvas id="game-screen" width="800px" height="700px"></canvas>
   <script type="text/javascript" src="js/shot.js"></script>
