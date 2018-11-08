@@ -25,7 +25,7 @@ class Game {
 // Creates the enemies
     setInterval(() => {
       this.obstacles.push(new Obstacle);
-    }, 3000);
+    }, 1000);
   }
 
   // Gets the game running    
@@ -55,7 +55,7 @@ class Game {
             this.plane.shotsFired.splice(shotIndex, 1);
           }
           if(obstacle.checkIfHit(shot) === false) {
-            setTimeout(()=>{this.obstacles.splice(obstacleIndex, 1)}, 1000);
+            // setTimeout(()=>{this.obstacles.splice(obstacleIndex, 1)}, 1000);
             this.plane.shotsFired.splice(shotIndex, 1);
           }
         })

@@ -17,7 +17,7 @@ class Shot {
 
   moveUp() {
     setInterval(()=>{
-      this.y -= 30;
+      this.y -= 40;
     }, 50)
   }
 }

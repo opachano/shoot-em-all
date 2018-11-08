@@ -47,27 +47,27 @@ class Plane {
   move(){
     if(keysBeingPressed.includes("ArrowUp")){
       if(this.canMove(this.x, this.y-10)){
-        this.y -= 3;
+        this.y -= 4;
       }
       
     }
     if(keysBeingPressed.includes("ArrowDown")){
 
       if(this.canMove(this.x, this.y+this.height+10)){
-      this.y += 3;
+      this.y += 4;
       }
 
     }
 
     if(keysBeingPressed.includes("ArrowLeft")){
       if(this.canMove(this.x-10, this.y)){
-      this.x -= 3; 
+      this.x -= 4; 
       }
     }
 
     if(keysBeingPressed.includes("ArrowRight")){
       if(this.canMove(this.x+this.width+10, this.y)){
-      this.x += 3; 
+      this.x += 4; 
       }
     }
   }
@@ -81,6 +81,7 @@ class Plane {
 
 //Controls the amount of shots displayed
   shot() {
+    if(this.hp > 0) {
     if(cd) {
       if(keysBeingPressed.includes("z")){
         this.shotsFired.push(new Shot(this.x+47, this.y));
@@ -88,9 +89,10 @@ class Plane {
         laser.currentTime = 0;
         laser.play();
         cd = false;
-        setTimeout(() => {cd = true}, 500);
+        setTimeout(() => {cd = true}, 400);
       }
     }
+  }
   }
 
   checkIfCollide(obstacle) {
