@@ -100,12 +100,15 @@ class Plane {
       if (this.y > obstacle.y+obstacle.height || this.y+this.height < obstacle.y || this.x > obstacle.x+obstacle.width || this.x+this.width < obstacle.x) {
         return; 
       }
+      if (theScore < 20) {
       this.hp -= 1;
+      }
       if(this.hp > 0) {
       collisionCd = false;
       damage.pause();
       damage.currentTime = 0;
       damage.play();
+
       }
       if(this.hp === 0) {
         death.pause();

@@ -45,22 +45,29 @@ class Game {
       this.plane.move();
       this.plane.shot();
       this.drawEverything();
-
       this.obstacles.forEach(obstacle => {
         this.plane.checkIfCollide(obstacle);
       });
       this.plane.shotsFired.forEach((shot,shotIndex) => {
-        this.obstacles.forEach((obstacle, obstacleIndex) => {
+        this.obstacles.forEach(obstacle => {
           if(obstacle.checkIfHit(shot) === true) {
             this.plane.shotsFired.splice(shotIndex, 1);
           }
           if(obstacle.checkIfHit(shot) === false) {
-            // setTimeout(()=>{this.obstacles.splice(obstacleIndex, 1)}, 1000);
             this.plane.shotsFired.splice(shotIndex, 1);
           }
         })
       })
-
+      if(defeat) {
+        let img = new Image;
+        img.src = "./images/gameOver.png"
+        this.ctx.drawImage(img, 50, 330, 700, 80);
+      }
+      if(theScore >= 20) {
+        let img = new Image;
+        img.src = "./images/congratulations.png"
+        this.ctx.drawImage(img, 50, 330, 700, 80);
+      }
       this.frames++
     window.requestAnimationFrame(this.physicsEngine.bind(this));
   }
@@ -72,7 +79,6 @@ class Game {
       shot.draw();
     });
     this.obstacles.forEach(obstacle => {
-
       obstacle.draw();
     });
   }
@@ -99,7 +105,7 @@ window.onload = function() {
   }
 
 document.onkeydown = function(e) {
-  if(!defeat) {
+  if(!defeat && theScore < 20) {
     let commands = ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "z"]
       if(commands.includes(e.key)){
         e.preventDefault();
@@ -107,7 +113,7 @@ document.onkeydown = function(e) {
       if(!keysBeingPressed.includes(e.key)){
         keysBeingPressed.push(e.key);
       }
-  
+    }
 
   document.onkeyup = function(e){
     let theIndex = keysBeingPressed.indexOf(e.key)
@@ -116,4 +122,17 @@ document.onkeydown = function(e) {
       }
     }
   }
-}
+
+document.onkeypress = function (e) {
+    if(defeat === true || theScore >= 20) {
+      if(e.keyCode === 32) {
+        theGame.ctx.clearRect(0,0,800,700);
+        theGame = {};
+        thePlane = new Plane();
+        theGame = new Game(thePlane);
+        defeat = false;
+        theScore = 0;
+        $("#scoreKeeper").text(`${theScore}`);
+      }
+    }
+  }
